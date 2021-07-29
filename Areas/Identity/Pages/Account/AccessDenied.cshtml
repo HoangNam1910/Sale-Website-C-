@@ -1,0 +1,30 @@
+﻿@page "/accessdenied/"
+@model AccessDeniedModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+
+@inject SignInManager<SkyUser> SignInManager
+@inject UserManager<SkyUser> UserManager
+
+@{
+    ViewData["Title"] = "Access denied";
+    var currentUser = await UserManager.GetUserAsync(User);
+    var isAdmin = currentUser != null && (await UserManager.IsInRoleAsync(currentUser, "Admin") || await UserManager.IsInRoleAsync(currentUser, "Manager"));
+
+    if (isAdmin)
+    {
+        Layout = "~/Areas/Identity/Pages/Admin/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">You do not have access to this resource.</p>
+
+</header>
+<img src="https://i.imgur.com/ARuQx9A.gif" alt="gif denied" />

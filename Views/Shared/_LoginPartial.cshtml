@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.ViewEngines
+
+@inject SignInManager<SkyUser> SignInManager
+@inject UserManager<SkyUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <!-- Nav Item - Love -->
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-heart fa-lg"></i>
+            <!-- Counter - love -->
+            <span class="badge badge-danger badge-counter">3</span>
+        </a>
+        <!-- Dropdown - love -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+                Yêu thích
+            </h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="~/js/Mv9hjnEUHR4/60x60.png" alt="">
+                    <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">
+                        Am I a good boy? The reason I ask is because someone
+                        told me that people say this to all dogs, even if they aren't good...
+                    </div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+        </div>
+    </li>
+
+    <!-- Nav Item - Carrt -->
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-shopping-cart fa-lg"></i>
+            <!-- Counter - Carrt -->
+            <span class="badge badge-danger badge-counter">3+</span>
+        </a>
+        <!-- Dropdown - Carrt -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+                Giỏ hàng
+            </h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="~/js/Mv9hjnEUHR4/60x60.png" alt="">
+                    <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">
+                        Am I a good boy? The reason I ask is because someone
+                        told me that people say this to all dogs, even if they aren't good...
+                    </div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+        </div>
+    </li>
+
+
+
+    <div class="topbar-divider d-none d-sm-block"></div>
+
+    <!-- Nav Item - User Information -->
+    <li class="nav-item dropdown no-arrow show">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">@UserManager.GetUserName(User)</span>
+            <img class="img-profile rounded-circle bg-dark" style="height: 32px" src="https://i.imgur.com/1T5lzi9.gif">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Hồ sơ
+            </a>
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                <i class="fas fa-shopping-bag fa-sm fa-fw mr-2 text-gray-400"></i>
+                Đơn hàng
+            </a>
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+            </a>
+        </div>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link nav-menu text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-menu text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}

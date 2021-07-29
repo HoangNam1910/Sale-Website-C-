@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Meow</title>
+    <link rel="icon" href="https://i.imgur.com/qpKpPEo.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <link href="~/sbadmin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/js/zoomsl-3.0.min.js" />
+    <style>
+        .nav-menu:hover {
+            background-color: #f8f9fc !important;
+            transition-delay: 0.1s;
+        }
+
+        .col-xs-6 {
+            width: 50%;
+        }
+
+        .product-image {
+            transition: transform .5s, filter 1.5s ease-in-out;
+        }
+
+            .product-image:hover {
+                transform: scale(1.07);
+            }
+
+        #quantity:focus {
+            outline: none !important;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+
+</head>
+<body id="page-top">
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow fixed-top mb-3 topbar">
+            <button class="navbar-toggler btn btn-circle" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="sidebar-brand-icon">
+                    <img src="https://i.imgur.com/hveauEn.png" style="height: 32px" />
+                </div>
+            </a>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse bg-white">
+
+
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-inline-block d-lg-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Search -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline ml-auto w-100 navbar-search">
+                                <div class="input-group w-100">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+
+                </ul>
+                <!-- Topbar Search -->
+                <form class="d-none d-lg-inline form-inline ml-auto mr-sm-5 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item d-block">
+                        <a class="nav-link nav-menu text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item d-block">
+                        <a class="nav-link nav-menu text-dark" asp-area="" asp-controller="Product" asp-action="">Product</a>
+                    </li>
+                    <li class="nav-item d-block">
+                        <a class="nav-link nav-menu text-dark" asp-area="" asp-controller="Product" asp-action="Nam">Nam</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <nav class="navbar navbar-expand-sm mb-4 nav-hide">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <div class="sidebar-brand-icon">
+                    <img src="https://i.imgur.com/hveauEn.png" style="height: 32px" />
+                </div>
+            </a>
+        </nav>
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    }
+    <!--Logout Confirm-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form id="logoutForm" class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="sticky-footer footer bg-white border-top">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; 2020 Your Website 2020</span>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <a class="scroll-to-top rounded" href="#page-top" style="display: none;">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <partial name="~/Views/Shared/_AdminPartial.cshtml" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <script src="~/sbadmin/js/sb-admin-2.min.js"></script>
+    <script src="~/js/zoomsl-3.0.min.js"></script>
+    <script>
+        $("document").ready(function () {
+
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
